@@ -12,6 +12,7 @@ app.secret_key = "XDDD"
 
 ALLOWED_EXTENSIONS = {"wav"}
 
+
 process = Process(target=f, args=())
 
 
