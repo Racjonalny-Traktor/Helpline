@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.charityhelp">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:name=".ui.CharityHelpApp"
         android:allowBackup="true"
@@ -18,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.main.MainActivity">
         </activity>
 
         <service
