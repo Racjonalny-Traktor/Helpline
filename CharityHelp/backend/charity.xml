@@ -6,34 +6,37 @@
     <members>
         <member name="M:charity.Controllers.CallController.NewCall(System.String)">
             <summary>
-            for twillio microservice: call from person who need help
+                for twillio microservice: call from person who need help, mobile will be automaticly notified
             </summary>
         </member>
-        <member name="M:charity.Controllers.CallController.DebugAnswerNewCall(System.Int32)">
+        <member name="M:charity.Controllers.CallController.AnswerNewCall(System.Int32)">
             <summary>
-            for mobile: answer a call
+                for mobile: answer a call, "take an order etc".
             </summary>
-            <param name="callId"></param>
-            <returns></returns>
         </member>
         <member name="M:charity.Controllers.CallsController.GetAllCalls">
             <summary>
-            for testing: get all calls
+                for testing: get all calls
             </summary>
         </member>
         <member name="M:charity.Controllers.CallsController.GetNearestCalls(charity.Utils.Coords,System.Single)">
             <summary>
-            for mobile: get all nearest calls, sorted by distance
+                for mobile: get all nearest calls, sorted by distance
             </summary>
         </member>
         <member name="M:charity.Controllers.UserController.AddNewUser(charity.Controllers.UserController.AddNewUserDto)">
             <summary>
-            for twillio microservice: create new user
+                for twillio microservice: create new user
             </summary>
         </member>
         <member name="M:charity.Controllers.UserController.CheckUserIfExists(System.String)">
             <summary>
-            for twillio microservice: check if number exists in database
+                for twillio microservice: check if number exists in database
+            </summary>
+        </member>
+        <member name="T:charity.Utils.RationalController">
+            <summary>
+                for lolz
             </summary>
         </member>
     </members>

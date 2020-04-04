@@ -39,7 +39,7 @@ namespace charity.Utils
         }
 
         [NonAction]
-        public virtual ImATeapotResult Ok()
+        public virtual ImATeapotResult ImATeapot()
         {
             return new ImATeapotResult();
         }

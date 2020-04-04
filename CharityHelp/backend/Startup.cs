@@ -38,7 +38,10 @@ namespace charity
                 c.IncludeXmlComments(xmlPath);
             });
 
-            services.AddDbContext<DataContext>(options => { options.UseSqlServer(Configuration.GetConnectionString("db")); });
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("db"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +53,7 @@ namespace charity
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "CharityHelp"); });
 
             app.UseRouting();
 

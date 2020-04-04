@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using charity.Models;
 using charity.Utils;
-using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +18,7 @@ namespace charity.Controllers
         }
 
         /// <summary>
-        /// for testing: get all calls
+        ///     for testing: get all calls
         /// </summary>
         [HttpGet("all")]
         public IActionResult GetAllCalls()
@@ -33,10 +31,10 @@ namespace charity.Controllers
         }
 
         /// <summary>
-        /// for mobile: get all nearest calls, sorted by distance
+        ///     for mobile: get all nearest calls, sorted by distance
         /// </summary>
         [HttpPost("{maxDistanceInKm}")]
-        public IActionResult GetNearestCalls([FromBody] Utils.Coords pos, [FromRoute] float maxDistanceInKm = 5.0f)
+        public IActionResult GetNearestCalls([FromBody] Coords pos, [FromRoute] float maxDistanceInKm = 5.0f)
         {
             // use some kind of spatial partitioning in future
             // so no need to get all table...
@@ -50,10 +48,9 @@ namespace charity.Controllers
                     .Select(x => x.ConvertCallToNearestCall(pos))
                     .Where(x => x.Distance <= maxDistanceInKm)
                     .OrderBy(x => x.Distance)
-                ;//.Take(5);
+                ; //.Take(5);
 
             return Ok(nearest);
         }
-
     }
 }

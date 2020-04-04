@@ -19,7 +19,7 @@ namespace charity.Controllers
         }
 
         /// <summary>
-        /// for twillio microservice: call from person who need help, mobile will be automaticly notified
+        ///     for twillio microservice: call from person who need help, mobile will be automaticly notified
         /// </summary>
         [HttpGet("{phoneNumber}")]
         public async Task<IActionResult> NewCall([FromRoute] string phoneNumber)
@@ -41,7 +41,7 @@ namespace charity.Controllers
         }
 
         /// <summary>
-        /// for mobile: answer a call, "take an order etc".
+        ///     for mobile: answer a call, "take an order etc".
         /// </summary>
         [HttpGet("answer/{callId}")]
         public IActionResult AnswerNewCall([FromRoute] int callId)

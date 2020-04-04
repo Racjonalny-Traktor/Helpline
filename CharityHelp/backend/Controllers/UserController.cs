@@ -16,7 +16,7 @@ namespace charity.Controllers
         }
 
         /// <summary>
-        /// for twillio microservice: create new user
+        ///     for twillio microservice: create new user
         /// </summary>
         [HttpPost("")]
         public IActionResult AddNewUser([FromBody] AddNewUserDto dto)
@@ -34,7 +34,7 @@ namespace charity.Controllers
         }
 
         /// <summary>
-        /// for twillio microservice: check if number exists in database
+        ///     for twillio microservice: check if number exists in database
         /// </summary>
         [HttpGet("{number}")]
         public IActionResult CheckUserIfExists([FromRoute] string number)
