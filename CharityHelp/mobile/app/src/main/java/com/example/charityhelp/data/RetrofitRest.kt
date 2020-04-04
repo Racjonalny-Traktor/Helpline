@@ -1,7 +1,7 @@
-package data
+package com.example.charityhelp.data
 
 import com.google.gson.GsonBuilder
-import data.networking.Routes
+import com.example.charityhelp.data.networking.Routes
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

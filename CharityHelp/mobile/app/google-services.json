@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "502089111531",
+    "firebase_url": "https://charity-help-797fd.firebaseio.com",
+    "project_id": "charity-help-797fd",
+    "storage_bucket": "charity-help-797fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502089111531:android:1d9449ef4224d4b5356bae",
+        "android_client_info": {
+          "package_name": "com.example.charityhelp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502089111531-h3ani1h4it8q1mm0nldh813doh9lbjut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBMiucNQoSqnGIA9E1JAaCY4Op1fNVmkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502089111531-h3ani1h4it8q1mm0nldh813doh9lbjut.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
