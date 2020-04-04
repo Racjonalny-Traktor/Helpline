@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using charity.Models;
+using charity.Utils;
 using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,7 @@ namespace charity.Controllers
         }
 
         [HttpPost("nearest/{maxDistance}")]
-        public IActionResult GetNearestCalls([FromBody] LatLong pos, [FromRoute] float maxDistance = 5.0f)
+        public IActionResult GetNearestCalls([FromBody] Utils.Coords pos, [FromRoute] float maxDistance = 5.0f)
         {
             // use some kind of spatial partitioning in future
             // so no need to get all table...
@@ -40,7 +41,7 @@ namespace charity.Controllers
 
             //rzeszow ofiar katynia 50.0543272, 21.9791912
             var nearest = calls
-                .Select(x => ConvertCallToNearestCallDto(x, pos))
+                .Select(x => x.ConvertCallToNearestCall(pos))
                 .Where(x => x.Distance <= maxDistance)
                 .OrderBy(x => x.Distance)
                 ;//.Take(5);
@@ -48,32 +49,13 @@ namespace charity.Controllers
             return Ok(nearest);
         }
 
-        private NearestCallDto ConvertCallToNearestCallDto(Call call, LatLong pos)
+        [HttpGet("check-number/{number}")]
+        public IActionResult CheckIfExists([FromRoute] string number)
         {
-            var p1 = new GeoCoordinate(call.User.Latitude, call.User.Longitude);
-            var p2 = new GeoCoordinate(pos.Latitude, pos.Longitude);
-            var dist = p1.GetDistanceTo(p2); //in meters
-            dist /= 1000; // in km
-
-            return new NearestCallDto
-            {
-                Latitude = call.User.Latitude,
-                Longitude = call.User.Longitude,
-                Distance = (float) Math.Round(dist, 1)
-            };
-        }
-
-        public class NearestCallDto
-        {
-            public float Distance { get; set; }
-            public float Latitude { get; set; }
-            public float Longitude { get; set; }
-        }
-
-        public class LatLong
-        {
-            public float Latitude { get; set; }
-            public float Longitude { get; set; }
+            var user = _db.Users.FirstOrDefault(x => x.PhoneNumber == number);
+            if (user != null)
+                return Ok(new {exists = true});
+            return NotFound(new {exists = false});
         }
     }
 }

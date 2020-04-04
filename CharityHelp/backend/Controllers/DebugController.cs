@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using charity.Models;
+using charity.Utils;
+using FirebaseAdmin.Messaging;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace charity.Controllers
 {
@@ -26,19 +27,23 @@ namespace charity.Controllers
             return Ok();
         }
 
+        //all fucking async xdd
         [HttpPost("debug-add-new-call")]
-        public IActionResult DebugAddNewCall([FromBody] DebugAddNewCallDto dto)
+        public async Task<IActionResult> DebugAddNewCall([FromBody] DebugAddNewCallDto dto)
         {
-            var user = _db.Users.First(x => x.PhoneNumber == dto.PhoneNumber);
+            var user = await _db.Users.FirstAsync(x => x.PhoneNumber == dto.PhoneNumber);
             var call = new Call
             {
-                PhoneNumber = dto.PhoneNumber, 
-                CalledAt = DateTime.Now, 
-                User = user, 
+                PhoneNumber = dto.PhoneNumber,
+                CalledAt = DateTime.Now,
+                User = user,
                 UserId = user.Id
             };
-            _db.Calls.Add(call);
-            _db.SaveChanges();
+            await _db.Calls.AddAsync(call);
+            await _db.SaveChangesAsync();
+
+            await NotificationFactory.NotifyAboutHelpAsync(call.ConvertCallToNearestCall());
+
             return Ok(call.Id);
         }
 
@@ -47,9 +52,9 @@ namespace charity.Controllers
         {
             var user = new User
             {
-                Address = dto.Address, 
-                Latitude = dto.Latitude, 
-                Longitude = dto.Longitude, 
+                Address = dto.Address,
+                Latitude = dto.Latitude,
+                Longitude = dto.Longitude,
                 PhoneNumber = dto.PhoneNumber
             };
             _db.Users.Add(user);
@@ -74,6 +79,5 @@ namespace charity.Controllers
             public float Latitude { get; set; }
             public float Longitude { get; set; }
         }
-
     }
 }

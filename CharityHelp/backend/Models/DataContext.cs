@@ -10,6 +10,12 @@ namespace charity.Models
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>().HasIndex(x => x.PhoneNumber);
+        }
+
         public DbSet<Call> Calls { get; set; }
         public DbSet<User> Users { get; set; } // elders
     }
