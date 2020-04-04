@@ -22,6 +22,7 @@ namespace charity.Utils
             };
         }
 
+        //if no pos2 is provided xd
         public static NearestCall ConvertCallToNearestCall(this Call call)
         {
             return new NearestCall
