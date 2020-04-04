@@ -30,8 +30,17 @@ namespace charity.Controllers
             return Ok(call.Id);
         }
 
-        public class DebugAnswerNewCallDto { public int Id { get; set; } }
-        public class DebugAddNewCallDto { public string PhoneNumber { get; set; } }
+        public class DebugAnswerNewCallDto
+        {
+            public int Id { get; set; }
+        }
+
+        public class DebugAddNewCallDto
+        {
+            public string PhoneNumber { get; set; }
+            public float Latitude { get; set; }
+            public float Longitude { get; set; }
+        }
 
     }
 }
