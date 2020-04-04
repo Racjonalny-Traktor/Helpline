@@ -19,7 +19,6 @@ class CharityHelpApp: Application() {
                     msg = "fail"
                 }
                 Log.d(TAG, msg)
-                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
             }
 
     }
