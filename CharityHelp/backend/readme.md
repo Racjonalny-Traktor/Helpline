@@ -36,6 +36,8 @@ appsettings.json:
 
 in console within project folder:
 ```
+dotnet restore
+dotnet tool install --global dotnet-ef
 dotnet ef database update
 ```
 
