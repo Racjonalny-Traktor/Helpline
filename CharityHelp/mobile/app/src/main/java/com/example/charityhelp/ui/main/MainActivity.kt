@@ -1,22 +1,13 @@
 package com.example.charityhelp.ui.main
 
-import android.Manifest
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.charityhelp.R
-import com.example.charityhelp.ui.main.fragment.HomeFragment
-import com.example.charityhelp.ui.main.fragment.ListFragment
-import com.example.charityhelp.ui.main.fragment.MapFragment
-import com.example.charityhelp.ui.main.fragment.ProfileFragment
+import com.example.charityhelp.ui.main.fragment.home.HomeFragment
+import com.example.charityhelp.ui.main.fragment.list.ListFragment
+import com.example.charityhelp.ui.main.fragment.map.MapFragment
+import com.example.charityhelp.ui.main.fragment.profile.ProfileFragment
 import com.example.charityhelp.ui.main.fragment.adapter.MainFragmentsAdapter
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionDeniedResponse
-import com.karumi.dexter.listener.PermissionGrantedResponse
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 

@@ -1,4 +1,4 @@
-package com.example.charityhelp.ui.main.fragment
+package com.example.charityhelp.ui.main.fragment.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.charityhelp.R
+import com.example.charityhelp.ui.main.MainActivity
 
-/**
- * A simple [Fragment] subclass.
- */
-class ProfileFragment : Fragment() {
+class ProfileFragment(val mainActivity: MainActivity) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

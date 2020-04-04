@@ -5,9 +5,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.fragment.app.ListFragment
 import com.example.charityhelp.ui.main.MainActivity
-import com.example.charityhelp.ui.main.fragment.HomeFragment
-import com.example.charityhelp.ui.main.fragment.MapFragment
-import com.example.charityhelp.ui.main.fragment.ProfileFragment
+import com.example.charityhelp.ui.main.fragment.home.HomeFragment
+import com.example.charityhelp.ui.main.fragment.map.MapFragment
+import com.example.charityhelp.ui.main.fragment.profile.ProfileFragment
 
 class MainFragmentsAdapter(fm: FragmentManager, val mainActivity: MainActivity): FragmentStatePagerAdapter(fm) {
 
