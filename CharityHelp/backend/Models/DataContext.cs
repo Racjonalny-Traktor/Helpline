@@ -14,5 +14,11 @@ namespace charity.Models
         {
             options.UseSqlite("Data Source=db.db");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            Call.OnModelCreating(modelBuilder.Entity<Call>());
+        }
     }
 }

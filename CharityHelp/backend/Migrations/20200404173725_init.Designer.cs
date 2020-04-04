@@ -9,8 +9,8 @@ using charity.Models;
 namespace charity.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200404150117_InitialCreate2")]
-    partial class InitialCreate2
+    [Migration("20200404173725_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
