@@ -18,7 +18,9 @@ namespace charity.Controllers
             _db = db;
         }
 
-        //all fucking async xdd
+        /// <summary>
+        /// for twillio microservice: call from person who need help, mobile will be automaticly notified
+        /// </summary>
         [HttpGet("{phoneNumber}")]
         public async Task<IActionResult> NewCall([FromRoute] string phoneNumber)
         {
@@ -38,8 +40,11 @@ namespace charity.Controllers
             return Ok(call.Id);
         }
 
+        /// <summary>
+        /// for mobile: answer a call, "take an order etc".
+        /// </summary>
         [HttpGet("answer/{callId}")]
-        public IActionResult DebugAnswerNewCall([FromRoute] int callId)
+        public IActionResult AnswerNewCall([FromRoute] int callId)
         {
             _db.Calls.Find(callId).IsAnswered = true;
             _db.SaveChanges();
