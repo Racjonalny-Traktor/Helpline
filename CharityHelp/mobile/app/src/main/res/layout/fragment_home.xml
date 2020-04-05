@@ -46,7 +46,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/textViewSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -59,13 +59,13 @@
                     tools:text="31" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/textViewActions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Completed actions this month"
                     android:textColor="@color/textColor"
-                    app:layout_constraintStart_toStartOf="@+id/textView"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                    app:layout_constraintStart_toStartOf="@+id/textViewSize"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewSize" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
