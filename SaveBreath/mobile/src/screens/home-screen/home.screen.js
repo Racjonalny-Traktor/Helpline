@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { StatusBar, StyleSheet } from 'react-native';
-import { Layout, Text } from '@ui-kitten/components';
+import { StyleSheet } from 'react-native';
+import { Text } from '@ui-kitten/components';
+
+import LayoutWithStatusBar from '../../components/layout-with-status-bar';
 
 const HomeScreen = () => (
-  <React.Fragment>
-    <Layout style={styles.layout}>
-      <StatusBar transculent barStyle="light-content" />
-      <Text category="h1">HOME</Text>
-    </Layout>
-  </React.Fragment>
+  <LayoutWithStatusBar layoutStyle={styles.layout} barStyle="light-content">
+    <Text category="h1">HOME</Text>
+  </LayoutWithStatusBar>
 );
 
 const styles = StyleSheet.create({
