@@ -5,16 +5,13 @@ import { Layout, Text } from '@ui-kitten/components';
 const HomeScreen = () => (
   <React.Fragment>
     <Layout style={styles.layout}>
-      <StatusBar transculent styles={styles.statusBar} />
+      <StatusBar transculent barStyle="light-content" />
       <Text category="h1">HOME</Text>
     </Layout>
   </React.Fragment>
 );
 
 const styles = StyleSheet.create({
-  statusBar: {
-    backgroundColor: '#1e263c',
-  },
   layout: {
     flex: 1,
     justifyContent: 'center',

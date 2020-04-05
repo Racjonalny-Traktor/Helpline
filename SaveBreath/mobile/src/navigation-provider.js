@@ -10,7 +10,13 @@ const NavigationProvider = () => (
     <Screen
       name="Home"
       component={HomeScreen}
-      options={{ headerStatusBarHeight: 0 }}
+      options={{
+        headerStatusBarHeight: 0,
+        headerStyle: {
+          backgroundColor: '#1e263c',
+        },
+        headerTintColor: '#1e263c',
+      }}
     />
   </Navigator>
 );
