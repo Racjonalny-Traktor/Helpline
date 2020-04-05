@@ -6,17 +6,21 @@ const renderIcon = iconName => style => <Icon {...style} name={iconName} />;
 
 const Recorder = ({ record }) => {
   const [isRecording, setRecording] = React.useState(false);
-  const [timerValue, setTimerValue] = React.useState('00:00');
-  const iconName = isRecording ? 'mic-outline' : 'mic-off-outline';
+  const iconName = isRecording ? 'mic-off-outline' : 'mic-outline';
+  const textContent = isRecording
+    ? 'Press button when you are awake'
+    : `Press to have good night's sleep`;
 
   function handleRecording() {
-    console.log('xd');
     setRecording(!isRecording);
+    record(isRecording);
   }
 
   return (
     <React.Fragment>
-      <Text category="h3">{timerValue}</Text>
+      <Text category="h6" style={styles.text}>
+        {textContent}
+      </Text>
       <Button
         status="info"
         appearance="filled"
@@ -29,8 +33,12 @@ const Recorder = ({ record }) => {
 };
 
 const styles = StyleSheet.create({
+  text: {
+    width: 300,
+    textAlign: 'center',
+  },
   button: {
-    marginTop: 16,
+    marginTop: 24,
     width: 74,
     height: 74,
     borderRadius: 37,
