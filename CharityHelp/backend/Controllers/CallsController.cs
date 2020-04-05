@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using charity.Models;
 using charity.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ namespace charity.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CallsController : ControllerBase
+    public class CallsController : RationalController
     {
         private readonly DataContext _db;
 
@@ -21,20 +22,19 @@ namespace charity.Controllers
         ///     for testing: get all calls
         /// </summary>
         [HttpGet("all")]
-        public IActionResult GetAllCalls()
+        public ActionResult<IEnumerable<Call>> GetAllCalls()
         {
             var calls = _db.Calls
-                .Where(x => !x.IsAnswered)
                 .Include(x => x.User)
                 .ToList();
             return Ok(calls);
         }
 
         /// <summary>
-        ///     for mobile: get all nearest calls, sorted by distance
+        ///     for mobile: get all nearest calls, sorted by distance, use value -1 to get all
         /// </summary>
         [HttpPost("{maxDistanceInKm}")]
-        public IActionResult GetNearestCalls([FromBody] Coords pos, [FromRoute] float maxDistanceInKm = 5.0f)
+        public ActionResult<IEnumerable<NearestCall>> GetNearestCalls([FromBody] Coords pos, [FromRoute] float maxDistanceInKm = -1.0f)
         {
             // use some kind of spatial partitioning in future
             // so no need to get all table...
@@ -45,8 +45,8 @@ namespace charity.Controllers
 
             //rzeszow ofiar katynia 50.0543272, 21.9791912
             var nearest = calls
-                    .Select(x => x.ConvertCallToNearestCall(pos))
-                    .Where(x => x.Distance <= maxDistanceInKm)
+                    .Select(x => maxDistanceInKm > 0 ? x.ConvertCallToNearestCall(pos) : x.ConvertCallToNearestCall())
+                    .Where(x => !(maxDistanceInKm > 0) || x.Distance <= maxDistanceInKm)
                     .OrderBy(x => x.Distance)
                 ; //.Take(5);
 

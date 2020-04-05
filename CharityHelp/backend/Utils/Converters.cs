@@ -18,7 +18,11 @@ namespace charity.Utils
                 Latitude = call.User.Latitude,
                 Longitude = call.User.Longitude,
                 Distance = (float) Math.Round(dist, 1),
-                DistanceString = $"{(float) Math.Round(dist, 1)}km"
+                DistanceString = $"{(float) Math.Round(dist, 1)}km",
+                Address = call.User.Address,
+                CreatedAt = call.CreatedAt,
+                Id = call.Id,
+                PhoneNumber = call.PhoneNumber
             };
         }
 
@@ -30,7 +34,11 @@ namespace charity.Utils
                 Latitude = call.User.Latitude,
                 Longitude = call.User.Longitude,
                 Distance = 0,
-                DistanceString = "a few kilometers"
+                DistanceString = "a few kilometers",
+                Address = call.User.Address,
+                CreatedAt = call.CreatedAt,
+                Id = call.Id,
+                PhoneNumber = call.PhoneNumber
             };
         }
     }

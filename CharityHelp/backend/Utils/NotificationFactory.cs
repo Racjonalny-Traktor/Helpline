@@ -38,11 +38,12 @@ namespace charity
         {
             return NotifyAsync(new Message
             {
-                Notification =
+                Notification = new Notification
                 {
                     Title = "There's a person who needs your help!",
                     Body = $"Hi! There is an elderly person asking for your help. Only {help.DistanceString} away."
-                }
+                },
+                Topic = "help"
             });
         }
       

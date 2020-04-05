@@ -10,8 +10,8 @@ using charity.Models;
 namespace charity.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200404210115_init2")]
-    partial class init2
+    [Migration("20200405010228_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace charity.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CalledAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsAnswered")
