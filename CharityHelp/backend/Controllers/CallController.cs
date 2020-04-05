@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using charity.FCM;
 using charity.Models;
@@ -41,9 +42,10 @@ namespace charity.Controllers
                 User = user,
                 UserId = user.Id
             };
+            var volunteer = await _db.Volunteers.FirstOrDefaultAsync(x => x.AssignedUserId == user.Id);
             await _db.Calls.AddAsync(call);
 
-            await NotificationFactory.NotifyAboutHelpAsync(call.ConvertCallToNearestCall());
+            await NotificationFactory.NotifyAssignedVolunteerFirst(call.ConvertCallToNearestCall(), volunteer?.DeviceId);
             await _db.SaveChangesAsync();
 
 

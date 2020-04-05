@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using charity.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -12,11 +14,12 @@ namespace charity.FCM
     public class MessagingWorker : BackgroundService
     {
         private readonly ILogger<MessagingWorker> _logger;
+        private readonly IServiceProvider _serviceProvider;
         private readonly DataContext _db;
-        public MessagingWorker(ILogger<MessagingWorker> logger, DataContext db)
+        public MessagingWorker(ILogger<MessagingWorker> logger, IServiceProvider serviceProvider)
         {
             _logger = logger;
-            _db = db;
+            _serviceProvider = serviceProvider;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -43,9 +46,13 @@ namespace charity.FCM
                 if (delayedCall.CallAt > now)
                     break;
 
-                await NotificationFactory.NotifyAboutHelpAsync(delayedCall.Call);
-                sent += 1;
-
+                var db = _serviceProvider.GetService<DataContext>();
+                var call = db.Calls.Find(delayedCall.Call.Id);
+                if (!call.IsAnswered)
+                {
+                    await NotificationFactory.NotifyAboutHelpAsync(delayedCall.Call);
+                    sent += 1;
+                }
                 //remove
                 queue.TryDequeue(out _);
             }

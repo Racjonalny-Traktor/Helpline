@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using charity.FCM;
 using charity.Models;
 using charity.Utils;
+using FirebaseAdmin.Messaging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -31,6 +34,13 @@ namespace charity.Controllers
                 .Include(x => x.User)
                 .ToList();
             return Ok(calls);
+        }
+
+        [HttpGet("{callId}")]
+        public async Task Notify(int callId)
+        {
+            var call = _db.Calls.Find(callId);
+            await NotificationFactory.NotifyAboutHelpAsync(call.ConvertCallToNearestCall());
         }
 
         /// <summary>

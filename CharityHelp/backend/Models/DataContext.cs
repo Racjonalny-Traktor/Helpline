@@ -8,6 +8,7 @@ namespace charity.Models
         {
         }
 
+        public DbSet<Volunteer> Volunteers { get; set; }
         public DbSet<Call> Calls { get; set; }
         public DbSet<User> Users { get; set; } // elders
 

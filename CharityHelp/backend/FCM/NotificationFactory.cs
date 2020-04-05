@@ -40,6 +40,12 @@ namespace charity.FCM
 
         public static async Task NotifyAssignedVolunteerFirst(NearestCall help, string deviceId)
         {
+            if (deviceId == null)
+            {
+                await NotifyAboutHelpAsync(help);
+                return;
+            }
+
             var notifyOthersDelay = TimeSpan.FromMinutes(5);
 
             await NotifyAboutHelpAsync(help, deviceId);
@@ -49,6 +55,8 @@ namespace charity.FCM
                 CallAt = help.CreatedAt + notifyOthersDelay
             });
         }
+
+
 
         #region notify queue
 
