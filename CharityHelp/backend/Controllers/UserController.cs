@@ -44,7 +44,7 @@ namespace charity.Controllers
             var user = _db.Users.FirstOrDefault(x => x.PhoneNumber == number);
             if (user != null)
                 return Ok(new CheckIfExistsDto {Exists = true});
-            return NotFound(new CheckIfExistsDto {Exists = false});
+            return ImATeapot(new CheckIfExistsDto {Exists = false});
         }
 
         public class AddNewUserDto

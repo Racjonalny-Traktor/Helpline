@@ -31,10 +31,10 @@ namespace charity.Controllers
         }
 
         /// <summary>
-        ///     for mobile: get all nearest calls, sorted by distance
+        ///     for mobile: get all nearest calls, sorted by distance, use value -1 to get all
         /// </summary>
         [HttpPost("{maxDistanceInKm}")]
-        public ActionResult<IEnumerable<NearestCall>> GetNearestCalls([FromBody] Coords pos, [FromRoute] float maxDistanceInKm = 5.0f)
+        public ActionResult<IEnumerable<NearestCall>> GetNearestCalls([FromBody] Coords pos, [FromRoute] float maxDistanceInKm = -1.0f)
         {
             // use some kind of spatial partitioning in future
             // so no need to get all table...
@@ -45,8 +45,8 @@ namespace charity.Controllers
 
             //rzeszow ofiar katynia 50.0543272, 21.9791912
             var nearest = calls
-                    .Select(x => x.ConvertCallToNearestCall(pos))
-                    .Where(x => x.Distance <= maxDistanceInKm)
+                    .Select(x => maxDistanceInKm > 0 ? x.ConvertCallToNearestCall(pos) : x.ConvertCallToNearestCall())
+                    .Where(x => !(maxDistanceInKm > 0) || x.Distance <= maxDistanceInKm)
                     .OrderBy(x => x.Distance)
                 ; //.Take(5);
 

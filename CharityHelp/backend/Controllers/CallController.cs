@@ -27,7 +27,7 @@ namespace charity.Controllers
             var user = await _db.Users.FirstOrDefaultAsync(x => x.PhoneNumber == phoneNumber);
             if (user == null)
                 return ImATeapot();
-            
+
             var call = new Call
             {
                 PhoneNumber = phoneNumber,
@@ -36,9 +36,10 @@ namespace charity.Controllers
                 UserId = user.Id
             };
             await _db.Calls.AddAsync(call);
-            await _db.SaveChangesAsync();
 
             await NotificationFactory.NotifyAboutHelpAsync(call.ConvertCallToNearestCall());
+            await _db.SaveChangesAsync();
+
 
             return Ok(call.Id);
         }
@@ -50,7 +51,7 @@ namespace charity.Controllers
         public IActionResult AnswerNewCall([FromRoute] int callId)
         {
             var call = _db.Calls.Find(callId);
-            if (call == null || call.IsAnswered == true)
+            if (call == null || call.IsAnswered)
                 return ImATeapot();
             call.IsAnswered = true;
             _db.SaveChanges();

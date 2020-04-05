@@ -10,7 +10,7 @@ using charity.Models;
 namespace charity.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200404200854_init")]
+    [Migration("20200405010228_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,9 +64,11 @@ namespace charity.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PhoneNumber");
 
                     b.ToTable("Users");
                 });

@@ -31,7 +31,7 @@ namespace charity.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PhoneNumber = table.Column<string>(nullable: true),
                     IsAnswered = table.Column<bool>(nullable: false),
-                    CalledAt = table.Column<DateTime>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -49,6 +49,11 @@ namespace charity.Migrations
                 name: "IX_Calls_UserId",
                 table: "Calls",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_PhoneNumber",
+                table: "Users",
+                column: "PhoneNumber");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

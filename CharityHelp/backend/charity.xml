@@ -21,7 +21,7 @@
         </member>
         <member name="M:charity.Controllers.CallsController.GetNearestCalls(charity.Models.Coords,System.Single)">
             <summary>
-                for mobile: get all nearest calls, sorted by distance
+                for mobile: get all nearest calls, sorted by distance, use value -1 to get all
             </summary>
         </member>
         <member name="M:charity.Controllers.UserController.AddNewUser(charity.Controllers.UserController.AddNewUserDto)">
