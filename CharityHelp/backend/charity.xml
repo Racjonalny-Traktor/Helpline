@@ -19,7 +19,7 @@
                 for testing: get all calls
             </summary>
         </member>
-        <member name="M:charity.Controllers.CallsController.GetNearestCalls(charity.Utils.Coords,System.Single)">
+        <member name="M:charity.Controllers.CallsController.GetNearestCalls(charity.Models.Coords,System.Single)">
             <summary>
                 for mobile: get all nearest calls, sorted by distance
             </summary>
@@ -28,6 +28,7 @@
             <summary>
                 for twillio microservice: create new user
             </summary>
+            <returns>AddNewUserDto</returns>
         </member>
         <member name="M:charity.Controllers.UserController.CheckUserIfExists(System.String)">
             <summary>

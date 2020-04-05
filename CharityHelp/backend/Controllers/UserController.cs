@@ -1,12 +1,13 @@
 ﻿using System.Linq;
 using charity.Models;
+using charity.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace charity.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UserController : ControllerBase
+    public class UserController : RationalController
     {
         private readonly DataContext _db;
 
@@ -18,8 +19,9 @@ namespace charity.Controllers
         /// <summary>
         ///     for twillio microservice: create new user
         /// </summary>
+        /// <returns>AddNewUserDto</returns>
         [HttpPost("")]
-        public IActionResult AddNewUser([FromBody] AddNewUserDto dto)
+        public ActionResult<AddNewUserDto> AddNewUser([FromBody] AddNewUserDto dto)
         {
             var user = new User
             {
@@ -37,7 +39,7 @@ namespace charity.Controllers
         ///     for twillio microservice: check if number exists in database
         /// </summary>
         [HttpGet("{number}")]
-        public IActionResult CheckUserIfExists([FromRoute] string number)
+        public ActionResult<CheckIfExistsDto> CheckUserIfExists([FromRoute] string number)
         {
             var user = _db.Users.FirstOrDefault(x => x.PhoneNumber == number);
             if (user != null)

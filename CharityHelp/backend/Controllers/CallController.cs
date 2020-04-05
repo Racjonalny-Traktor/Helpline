@@ -9,7 +9,7 @@ namespace charity.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CallController : ControllerBase
+    public class CallController : RationalController
     {
         private readonly DataContext _db;
 
@@ -24,11 +24,14 @@ namespace charity.Controllers
         [HttpGet("{phoneNumber}")]
         public async Task<IActionResult> NewCall([FromRoute] string phoneNumber)
         {
-            var user = await _db.Users.FirstAsync(x => x.PhoneNumber == phoneNumber);
+            var user = await _db.Users.FirstOrDefaultAsync(x => x.PhoneNumber == phoneNumber);
+            if (user == null)
+                return ImATeapot();
+            
             var call = new Call
             {
                 PhoneNumber = phoneNumber,
-                CalledAt = DateTime.Now,
+                CreatedAt = DateTime.Now,
                 User = user,
                 UserId = user.Id
             };
@@ -46,7 +49,10 @@ namespace charity.Controllers
         [HttpGet("answer/{callId}")]
         public IActionResult AnswerNewCall([FromRoute] int callId)
         {
-            _db.Calls.Find(callId).IsAnswered = true;
+            var call = _db.Calls.Find(callId);
+            if (call == null || call.IsAnswered == true)
+                return ImATeapot();
+            call.IsAnswered = true;
             _db.SaveChanges();
             return Ok();
         }

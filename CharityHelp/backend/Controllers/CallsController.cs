@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using charity.Models;
 using charity.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ namespace charity.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CallsController : ControllerBase
+    public class CallsController : RationalController
     {
         private readonly DataContext _db;
 
@@ -21,10 +22,9 @@ namespace charity.Controllers
         ///     for testing: get all calls
         /// </summary>
         [HttpGet("all")]
-        public IActionResult GetAllCalls()
+        public ActionResult<IEnumerable<Call>> GetAllCalls()
         {
             var calls = _db.Calls
-                .Where(x => !x.IsAnswered)
                 .Include(x => x.User)
                 .ToList();
             return Ok(calls);
@@ -34,7 +34,7 @@ namespace charity.Controllers
         ///     for mobile: get all nearest calls, sorted by distance
         /// </summary>
         [HttpPost("{maxDistanceInKm}")]
-        public IActionResult GetNearestCalls([FromBody] Coords pos, [FromRoute] float maxDistanceInKm = 5.0f)
+        public ActionResult<IEnumerable<NearestCall>> GetNearestCalls([FromBody] Coords pos, [FromRoute] float maxDistanceInKm = 5.0f)
         {
             // use some kind of spatial partitioning in future
             // so no need to get all table...
