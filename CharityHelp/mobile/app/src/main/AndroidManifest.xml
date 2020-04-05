@@ -3,6 +3,7 @@
     package="com.example.charityhelp">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".ui.CharityHelpApp"
