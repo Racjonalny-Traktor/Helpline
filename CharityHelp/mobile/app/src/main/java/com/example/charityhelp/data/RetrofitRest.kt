@@ -12,7 +12,7 @@ import javax.security.cert.CertificateException
 
 
 class RetrofitRest {
-    private val BASE_URL = "https://e6b082c7.ngrok.io/"
+    private val BASE_URL = "https://9bc80690.ngrok.io/"
 
     private var gson = GsonBuilder()
         .setLenient()
@@ -20,7 +20,7 @@ class RetrofitRest {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
-        //.client(getUnsafeOkHttpClient())
+        .client(getUnsafeOkHttpClient())
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()

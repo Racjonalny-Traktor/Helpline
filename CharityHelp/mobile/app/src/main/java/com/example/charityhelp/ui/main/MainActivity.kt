@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import com.example.charityhelp.R
+import com.example.charityhelp.data.RetrofitRest
 import com.example.charityhelp.ui.base.BaseActivity
 import com.example.charityhelp.ui.main.fragment.home.HomeFragment
 import com.example.charityhelp.ui.main.fragment.list.ListFragment

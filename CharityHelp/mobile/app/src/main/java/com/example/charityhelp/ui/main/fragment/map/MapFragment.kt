@@ -2,6 +2,7 @@ package com.example.charityhelp.ui.main.fragment.map
 
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ import java.lang.NullPointerException
 
 class MapFragment(val mainActivity: MainActivity) : Fragment() {
 
+    private val TAG = "MapFragment"
 
     var symbolManager: SymbolManager? = null
     var map: MapboxMap? = null
@@ -57,9 +59,13 @@ class MapFragment(val mainActivity: MainActivity) : Fragment() {
     fun setUserLocation(location: Location) {
         moveCamera(location)
 
-        val symbol: Symbol? = symbolManager?.create(SymbolOptions()
-            .withLatLng(LatLng(location.latitude, location.longitude))
-            .withIconSize(2.0f))
+
+        symbolManager?.let {
+            val symbol: Symbol? = it.create(SymbolOptions()
+                .withLatLng(LatLng(location.latitude, location.longitude))
+                .withIconSize(2.0f))
+        }
+
     }
 
 }
