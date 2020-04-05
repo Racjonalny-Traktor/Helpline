@@ -52,7 +52,8 @@ class MainPresenter(private val mView: MainActivity): BasePresenter(){
             }))
     }
 
-    fun onDestroy(){
+    override fun onDestroy(){
+        super.onDestroy()
         mLocationProvider.stopObservingLocation()
     }
 }

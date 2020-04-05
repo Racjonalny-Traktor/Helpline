@@ -81,7 +81,7 @@ class MainActivity : BaseActivity() {
                 mFragmentAdapter.setTabColor(true,tab!!.customView!!,applicationContext)
             }
         })
-        viewPager.currentItem = 0
+        viewPager.currentItem = 2
     }
 
 
