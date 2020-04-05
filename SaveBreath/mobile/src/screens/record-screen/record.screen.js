@@ -5,18 +5,25 @@ import { Text, Layout } from '@ui-kitten/components';
 import LayoutWithStatusBar from '../../components/layout-with-status-bar';
 import Recorder from '../../components/recorder';
 
-class RecordScreen extends React.Component {
-  state = {
-    timerValue: null,
-  };
+const INITIAL_STATE = {
+  timerValue: null,
+  isModalClosed: false,
+};
 
-  handleRecord = isRecording =>
-    console.log(isRecording ? 'startRecording' : 'finishRecording');
+class RecordScreen extends React.Component {
+  state = Object.freeze(INITIAL_STATE);
+
+  handleRecord = isRecording => {
+    const { navigation } = this.props;
+    if (!isRecording) {
+      setTimeout(navigation.navigate('AnomalyScreen'), 1000);
+    }
+  };
 
   render() {
     return (
       <LayoutWithStatusBar layoutStyle={styles.layout} barStyle="light-content">
-        <Text category="h1">Record screen</Text>
+        <Text category="h1">Save your breath</Text>
         <Layout style={styles.layout}>
           <Recorder record={this.handleRecord} />
         </Layout>
