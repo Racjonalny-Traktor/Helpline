@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="tab_names_main">
+        <item>Home</item>
+        <item>List</item>
+        <item>Map</item>
+        <item>Profile</item>
+    </array>
+</resources>
