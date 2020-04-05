@@ -34,10 +34,10 @@ class PageAdapterMain(fm: FragmentManager, val mainActivity: MainActivity): Frag
 
     override fun getItem(position: Int): Fragment {
         when(position){
-            0 -> return HomeFragment(mainActivity)
-            1 -> return ListFragment(mainActivity)
-            2 -> return MapFragment(mainActivity)
-            3 -> return ProfileFragment(mainActivity)
+            0 -> return mainActivity.mHomeFragment
+            1 -> return mainActivity.mListFragment
+            2 -> return mainActivity.mMapFragment
+            3 -> return mainActivity.mProfileFragment
         }
         return HomeFragment(mainActivity)
     }
