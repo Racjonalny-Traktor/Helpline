@@ -10,8 +10,10 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaView, ScrollView, StatusBar } from 'react-native';
+import { RecordingService } from './src/services/recording.service';
 
 const App: () => React$Node = () => {
+  RecordingService.upload().then(console.log);
   return (
     <NavigationContainer>
       <StatusBar barStyle="dark-content" />
