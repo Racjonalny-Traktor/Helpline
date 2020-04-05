@@ -4,6 +4,7 @@ using charity.Models;
 using charity.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace charity.Controllers
 {
@@ -12,10 +13,12 @@ namespace charity.Controllers
     public class CallsController : RationalController
     {
         private readonly DataContext _db;
+        private readonly ILogger<CallsController> _logger;
 
-        public CallsController(DataContext db)
+        public CallsController(DataContext db, ILogger<CallsController> logger)
         {
             _db = db;
+            _logger = logger;
         }
 
         /// <summary>

@@ -4,6 +4,8 @@ using charity.Models;
 using charity.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using ILogger = Google.Apis.Logging.ILogger;
 
 namespace charity.Controllers
 {
@@ -12,10 +14,11 @@ namespace charity.Controllers
     public class CallController : RationalController
     {
         private readonly DataContext _db;
-
-        public CallController(DataContext db)
+        private readonly ILogger<CallController> _logger;
+        public CallController(DataContext db, ILogger<CallController> logger)
         {
             _db = db;
+            _logger = logger;
         }
 
         /// <summary>

@@ -1,0 +1,8 @@
+authtoken 1QqXcGy39i6k28Etj71nRU4xWrA_5J2hz2N2NKNoZyF7fxxfS
+tunnels:
+  first:
+    addr: 5001
+    proto: https    
+  second:
+    addr: 5000
+    proto: http

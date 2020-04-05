@@ -2,6 +2,7 @@
 using charity.Models;
 using charity.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace charity.Controllers
 {
@@ -10,10 +11,12 @@ namespace charity.Controllers
     public class UserController : RationalController
     {
         private readonly DataContext _db;
+        private readonly ILogger<UserController> _logger;
 
-        public UserController(DataContext db)
+        public UserController(DataContext db, ILogger<UserController> logger)
         {
             _db = db;
+            _logger = logger;
         }
 
         /// <summary>
@@ -42,9 +45,7 @@ namespace charity.Controllers
         public ActionResult<CheckIfExistsDto> CheckUserIfExists([FromRoute] string number)
         {
             var user = _db.Users.FirstOrDefault(x => x.PhoneNumber == number);
-            if (user != null)
-                return Ok(new CheckIfExistsDto {Exists = true});
-            return ImATeapot(new CheckIfExistsDto {Exists = false});
+            return Ok(new CheckIfExistsDto {Exists = user != null });
         }
 
         public class AddNewUserDto
