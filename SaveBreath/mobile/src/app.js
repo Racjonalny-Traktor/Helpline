@@ -6,22 +6,18 @@
  * @flow strict-local
  */
 
+import * as React from 'react';
 import 'react-native-gesture-handler';
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
+import { ApplicationProvider } from '@ui-kitten/components';
 import { mapping, dark as darkTheme } from '@eva-design/eva';
 
-const HomeScreen = () => (
-  <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text category="h1">HOME</Text>
-  </Layout>
-);
+import NavigationProvider from './navigation-provider';
 
 const App = () => (
   <ApplicationProvider mapping={mapping} theme={darkTheme}>
     <NavigationContainer>
-      <HomeScreen />
+      <NavigationProvider />
     </NavigationContainer>
   </ApplicationProvider>
 );
