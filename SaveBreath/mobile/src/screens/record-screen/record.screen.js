@@ -4,9 +4,9 @@ import { Text } from '@ui-kitten/components';
 
 import LayoutWithStatusBar from '../../components/layout-with-status-bar';
 
-const HomeScreen = () => (
+const RecordScreen = () => (
   <LayoutWithStatusBar layoutStyle={styles.layout} barStyle="light-content">
-    <Text category="h1">HOME</Text>
+    <Text category="h1">Record screen</Text>
   </LayoutWithStatusBar>
 );
 
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default RecordScreen;
