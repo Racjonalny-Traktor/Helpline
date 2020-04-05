@@ -13,6 +13,7 @@
             <summary>
                 for mobile: answer a call, "take an order etc".
             </summary>
+            <returns>200 if answered, 418 if call not exists OR IS ALREADY TAKEN!</returns>
         </member>
         <member name="M:charity.Controllers.CallsController.GetAllCalls">
             <summary>

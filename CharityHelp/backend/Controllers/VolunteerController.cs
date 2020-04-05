@@ -22,6 +22,12 @@ namespace charity.Controllers
             _logger = logger;
         }
 
+        [HttpPost("")]
+        public IActionResult SubscribeDevice(string deviceId)
+        {
+            _logger.LogInformation($"new volunteer subscribed {deviceId}");
 
+            return ImATeapot();
+        }
     }
 }

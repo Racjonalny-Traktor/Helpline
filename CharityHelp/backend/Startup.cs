@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Reflection;
+using charity.FCM;
 using charity.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +44,8 @@ namespace charity
             {
                 options.UseSqlServer(Configuration.GetConnectionString("db"));
             });
+
+            services.AddHostedService<MessagingWorker>();
 
             services.AddLogging();
         }

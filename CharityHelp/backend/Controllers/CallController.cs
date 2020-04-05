@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using charity.FCM;
 using charity.Models;
 using charity.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,8 @@ namespace charity.Controllers
         [HttpGet("{phoneNumber}")]
         public async Task<IActionResult> NewCall([FromRoute] string phoneNumber)
         {
+            _logger.LogInformation($"new call for number {phoneNumber}");
+
             var user = await _db.Users.FirstOrDefaultAsync(x => x.PhoneNumber == phoneNumber);
             if (user == null)
                 return ImATeapot();
@@ -50,12 +53,15 @@ namespace charity.Controllers
         /// <summary>
         ///     for mobile: answer a call, "take an order etc".
         /// </summary>
+        /// <returns>200 if answered, 418 if call not exists OR IS ALREADY TAKEN!</returns>
         [HttpGet("answer/{callId}")]
         public IActionResult AnswerNewCall([FromRoute] int callId)
         {
             var call = _db.Calls.Find(callId);
             if (call == null || call.IsAnswered)
                 return ImATeapot();
+
+            _logger.LogInformation($"call {callId} - {call.PhoneNumber} is answered!");
             call.IsAnswered = true;
             _db.SaveChanges();
             return Ok();

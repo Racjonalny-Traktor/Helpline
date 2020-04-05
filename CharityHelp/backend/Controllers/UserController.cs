@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using charity.Models;
 using charity.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,7 @@ namespace charity.Controllers
         [HttpPost("")]
         public ActionResult<AddNewUserDto> AddNewUser([FromBody] AddNewUserDto dto)
         {
+            _logger.LogInformation($"creating new user: {dto.PhoneNumber} - {dto.Address}");
             var user = new User
             {
                 Address = dto.Address,
@@ -45,7 +47,7 @@ namespace charity.Controllers
         public ActionResult<CheckIfExistsDto> CheckUserIfExists([FromRoute] string number)
         {
             var user = _db.Users.FirstOrDefault(x => x.PhoneNumber == number);
-            return Ok(new CheckIfExistsDto {Exists = user != null });
+            return Ok(new CheckIfExistsDto {Exists = user != null});
         }
 
         public class AddNewUserDto

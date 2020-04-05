@@ -15,6 +15,7 @@ namespace charity.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().HasIndex(x => x.PhoneNumber);
+            modelBuilder.Entity<Volunteer>().HasIndex(x => x.DeviceId);
         }
     }
 }
